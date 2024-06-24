@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murir Tin</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5548f5ed00.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="script.js"></script>
+    <script src="createData.js"></script>
+</head>
+
+<body>
+
+    <div id="loader" class="loader"></div>
+    <div id="content" class="hidden">
+
+        <nav class="navbar navbar-expand-lg navbar-light static-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="murirTin.png" alt="..." height="80">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="login.html">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.html">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container menubar mt-5 mb-5 text-center border-3 border shadow-lg border-secondary p-3 rounded-3">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <label for="fromDiv">From:</label>
+                    <select id="fromDiv" class="dropdown">
+                        <ul id="fromMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <option class="dropdown-item" value="1">City Gate</option>
+                            <option class="dropdown-item" value="2">A.K Khan</option>
+                            <option class="dropdown-item" value="3">Alongkar</option>
+                            <option class="dropdown-item" value="4">Noya Bazar</option>
+                            <option class="dropdown-item" value="5">Boropool</option>
+                            <option class="dropdown-item" value="6">Agrabad</option>
+                            <option class="dropdown-item" value="7">Bohoddarhat</option>
+                            <option class="dropdown-item" value="8">New Market</option>
+                            <option class="dropdown-item" value="9">Chawkbazar</option>
+                            <option class="dropdown-item" value="10">Muradpur</option>
+                            <option class="dropdown-item" value="11">2 No. Gate</option>
+                            <option class="dropdown-item" value="12">MuriPara</option>
+                            <option class="dropdown-item" value="13">GEC</option>
+                            <option class="dropdown-item" value="14">Wasa</option>
+                            <option class="dropdown-item" value="15">Lalkhan Bazar</option>
+                            <option class="dropdown-item" value="16">Tiger pass</option>
+                            <option class="dropdown-item" value="17">Dewanhat</option>
+                            <option class="dropdown-item" value="18">Chowmuhoni</option>
+
+                        </ul>
+                    </select>
+                </div>
+                <div class="col-md-6 mt-3 mt-md-0 mx-auto">
+                    <label for="toDiv">To:</label>
+                    <select id="toDiv" class="dropdown">
+
+                        <ul id="toMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <option class="dropdown-item" value="1">City Gate</option>
+                            <option class="dropdown-item" value="2">A.K Khan</option>
+                            <option class="dropdown-item" value="3">Alongkar</option>
+                            <option class="dropdown-item" value="4">Noya Bazar</option>
+                            <option class="dropdown-item" value="5">Boropool</option>
+                            <option class="dropdown-item" value="6">Agrabad</option>
+                            <option class="dropdown-item" value="7">Bohoddarhat</option>
+                            <option class="dropdown-item" value="8">New Market</option>
+                            <option class="dropdown-item" value="9">Chawkbazar</option>
+                            <option class="dropdown-item" value="10">Muradpur</option>
+                            <option class="dropdown-item" selected="selected" value="11">2 No. Gate</option>
+                            <option class="dropdown-item" value="12">MuriPara</option>
+                            <option class="dropdown-item" value="13">GEC</option>
+                            <option class="dropdown-item" value="14">Wasa</option>
+                            <option class="dropdown-item" value="15">Lalkhan Bazar</option>
+                            <option class="dropdown-item" value="16">Tiger pass</option>
+                            <option class="dropdown-item" value="17">Dewanhat</option>
+                            <option class="dropdown-item" value="18">Chowmuhoni</option>
+
+                        </ul>
+                    </select>
+                </div>
+            </div>
+
+            <div class="btn-toolbartext-center" role="toolbar" aria-label="Toolbar with button groups">
+                <div class=" mx-auto btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-success rounded-0 fs-6" id="solve">Get Route</button>
+                </div>
+                <div class="  mx-auto btn-group mr-2" role="group" aria-label="Second group">
+                    <button type="button" class="btn btn-dark rounded-0 fs-6" id="generate-graph"><i class="fa fa-undo"
+                            aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="error-message" style="display: none; color: red; text-align: center;">Select another location</div>
+        <div id="distan" style="display: none; text-align: center;"></div>
+
+        <div id="map" class="mt-5">
+            <div id="container1">
+                <div id="mynetwork">
+                </div>
+
+            </div>
+
+        </div>
+        <div id="container2">
+            <span id="temptext2" style="text-align: center; font-size: x-large">
+            </span>
+            <span id="temptext" style="text-align: center; font-size: x-large">
+            </span>
+
+
+            <div id="mynetwork2" style="display: none"></div>
+        </div>
+
+        <div class="mt-5 mb-5 mx-auto d-flex justify-content-center">
+
+
+            <!-- Button trigger modal -->
+            <button type="button" style="display: none" id="bookride" class="btn btn-primary rounded-0 fs-6" data-toggle="modal"
+                data-target="#exampleModalCenter">
+                Book Your Ride <i class="fa fa-car" aria-hidden="true"></i>
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Book Your Ride</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="from" class="col-form-label">From:</label>
+                                    <input type="text" class="form-control" id="fromd" disabled>
+
+                                    <label for="to" class="col-form-label">Destination:</label>
+                                    <input type="text" class="form-control" id="tod" disabled>
+
+                                    <label for="name" class="col-form-label">Passanger Name:</label>
+                                    <input type="name" class="form-control" id="">
+                                    <label for="email" class="col-form-label">Email Address:</label>
+                                    <input type="email" class="form-control" id="">
+                                    <label for="fare" class="col-form-label">Fare: *VAT included</label>
+                                    <input type="cost" class="form-control" id="fare" disabled>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="cancel" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="confirmButton">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="new_footer_area bg_color">
+            <div class="new_footer_top">
+                <div class="container">
+                    
+                </div>
+                <div class="footer_bg">
+                    <div class="footer_bg_one"></div>
+                    <div class="footer_bg_two"></div>
+                </div>
+            </div>
+            
+          </footer>
+
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
+                <div class="col-md-12 d-flex align-items-center">
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                        <img width="30" src="murirTin.png">
+                    </a>
+                    <span class="mb-3 mb-md-0 text-muted">© 2024 Murir Tin, Inc | Designed With ❤️</span>
+                </div>
+
+
+            </footer>
+        </div>
+    </div>
+    <script>
+        $("#fromMenu option").on('click', function (e) {
+            e.preventDefault(); // cancel the link behaviour
+            var selText = $(this).text();
+            $("#fromButton").text(selText);
+        });
+        $("#toMenu option").on('click', function (e) {
+            e.preventDefault(); // cancel the link behaviour
+            var selText = $(this).text();
+            $("#toButton").text(selText);
+        });
+    </script>
+
+   
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Simulate an API request or any async operation
+            setTimeout(() => {
+                hideLoader();
+                showContent();
+            }, 3000); // Replace with your actual data loading logic and time
+
+            function hideLoader() {
+                const loader = document.getElementById("loader");
+                loader.style.visibility = "hidden";
+            }
+
+            function showContent() {
+                const content = document.getElementById("content");
+                content.style.visibility = "visible";
+            }
+        });
+
+    </script>
+
+    <!--
+    <script>
+      document.onkeydown = function(e) {
+       if (e.ctrlKey && 
+           (e.keyCode === 67 || 
+            e.keyCode === 86 || 
+            e.keyCode === 85 || 
+            e.keyCode === 117)) {
+           alert('NOT ALLOWED :D');
+           return false;
+       } else {
+           return true;
+       }
+};
+    </script>
+
+<noscript><h3> You must have JavaScript enabled in order to use this order form. Please 
+    enable JavaScript and then reload this page in order to continue. </h3> 
+    <meta HTTP-EQUIV="refresh" content=0;url="javascriptnotenabled.html"></noscript>
+  
+    <script>
+      var isNS = (navigator.appName == "Netscape") ? 1 : 0;
+      if(navigator.appName == "Netscape") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
+      function mischandler(){
+      return false;
+      }
+      function mousehandler(e){
+      var myevent = (isNS) ? e : event;
+      var eventbutton = (isNS) ? myevent.which : myevent.button;
+      if((eventbutton==2)||(eventbutton==3)) return false;
+      }
+      document.oncontextmenu = mischandler;
+      document.onmousedown = mousehandler;
+      document.onmouseup = mousehandler;
+      </script>
+-->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
