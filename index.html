@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,9 +26,10 @@
 <body>
 
     <div id="loader" class="loader"></div>
+
     <div id="content" class="hidden">
 
-        <nav class="navbar navbar-expand-lg navbar-light static-top">
+        <nav class="navbar navbar-expand-lg  navbar-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="#">
                     <img src="img/murirTin.png" alt="..." height="80">
@@ -65,107 +66,119 @@
             </div>
         </nav>
 
-        <div class="alert alert-success col-md-6 col-md-offset-6 alert-dismissible fade show mx-auto" align="center"
-            role="alert" id="notify" style="display: none">
-            <h4 class="alert-heading">Active Ride</h4>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Destination</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <p><span id="fromto"></p>
-                        </td>
-                        <td>
-                            <p><span id="date"></p>
-                        </td>
-                        <td>
-                            <p><span id="day"></p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <hr>
-            <p class="mb-0"></p>
-            <button class="btn-danger btn-sm btn rounded-0" data-dismiss="alert" aria-label="Close"
-                onclick="notclose()">
-                Cancel
-            </button>
-        </div>
+       <div class="container">
+        <div class="alert alert-success col-md-8 col-md-offset-6 alert-dismissible fade show mx-auto" align="center"
+        role="alert" id="notify" style="display: none">
+        <h4 class="alert-heading">Active Ride</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Fare</th>
+                    <th scope="col">Driver</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><span id="fromto"></p>
+                    </td>
+                    <td>
+                        <p><span id="date"></p>
+                    </td>
+                    <td>
+                        <p><span id="day"></p>
+                    </td>
+                    <td>
+                        <p><span id="fare"></p>
+                    </td>
+                    <td>
+                        <p>Rahat Ali</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <p class="mb-0"></p>
+        <button class="btn-danger btn-sm btn rounded-0" data-dismiss="alert" aria-label="Close"
+            onclick="notclose()">
+            Cancel
+        </button>
+    </div>
+       </div>
 
-        <div class="container menubar mt-5 mb-5 text-center border-3 border shadow-lg border-secondary p-3 rounded-3">
-            <div class="row">
-
-                <div class="col-md-6 mx-auto">
-                    <label for="fromDiv">From:</label>
-                    <select id="fromDiv" class="btn btn-light dropdown-toggle" data-mdb-dropdown-init data-mdb-ripple-init aria-expanded="false">
-                        <ul id="fromMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <option class="dropdown-item" value="1">City Gate</option>
-                            <option class="dropdown-item" value="2">A.K Khan</option>
-                            <option class="dropdown-item" value="3">Alongkar</option>
-                            <option class="dropdown-item" value="4">Noya Bazar</option>
-                            <option class="dropdown-item" value="5">Boropool</option>
-                            <option class="dropdown-item" value="6">Agrabad</option>
-                            <option class="dropdown-item" value="7">Bohoddarhat</option>
-                            <option class="dropdown-item" value="8">New Market</option>
-                            <option class="dropdown-item" value="9">Chawkbazar</option>
-                            <option class="dropdown-item" value="10">Muradpur</option>
-                            <option class="dropdown-item" value="11">2 No. Gate</option>
-                            <option class="dropdown-item" value="12">MuriPara</option>
-                            <option class="dropdown-item" value="13">GEC</option>
-                            <option class="dropdown-item" value="14">Wasa</option>
-                            <option class="dropdown-item" value="15">Lalkhan Bazar</option>
-                            <option class="dropdown-item" value="16">Tiger pass</option>
-                            <option class="dropdown-item" value="17">Dewanhat</option>
-                            <option class="dropdown-item" value="18">Chowmuhoni</option>
-
-                        </ul>
-                    </select>
+        <div class="container">
+            <div class="menubar mt-5 mb-5 text-center border-3 border shadow-lg border-secondary p-3 rounded-3">
+                <div class="row">
+    
+                    <div class="col-md-6 mx-auto">
+                        <label for="fromDiv">From:</label>
+                        <select id="fromDiv" class="btn btn-light dropdown-toggle" data-mdb-dropdown-init data-mdb-ripple-init aria-expanded="false">
+                            <ul id="fromMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <option class="dropdown-item" value="1">City Gate</option>
+                                <option class="dropdown-item" value="2">A.K Khan</option>
+                                <option class="dropdown-item" value="3">Alongkar</option>
+                                <option class="dropdown-item" value="4">Noya Bazar</option>
+                                <option class="dropdown-item" value="5">Boropool</option>
+                                <option class="dropdown-item" value="6">Agrabad</option>
+                                <option class="dropdown-item" value="7">Bohoddarhat</option>
+                                <option class="dropdown-item" value="8">New Market</option>
+                                <option class="dropdown-item" value="9">Chawkbazar</option>
+                                <option class="dropdown-item" value="10">Muradpur</option>
+                                <option class="dropdown-item" value="11">2 No. Gate</option>
+                                <option class="dropdown-item" value="12">MuriPara</option>
+                                <option class="dropdown-item" value="13">GEC</option>
+                                <option class="dropdown-item" value="14">Wasa</option>
+                                <option class="dropdown-item" value="15">Lalkhan Bazar</option>
+                                <option class="dropdown-item" value="16">Tiger pass</option>
+                                <option class="dropdown-item" value="17">Dewanhat</option>
+                                <option class="dropdown-item" value="18">Chowmuhoni</option>
+    
+                            </ul>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mt-3 mt-md-0 mx-auto">
+                        <label for="toDiv">To:</label>
+                        <select id="toDiv" class="btn btn-light dropdown-toggle" data-mdb-dropdown-init data-mdb-ripple-init aria-expanded="false">
+    
+                            <ul id="toMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <option class="dropdown-item" value="1">City Gate</option>
+                                <option class="dropdown-item" value="2">A.K Khan</option>
+                                <option class="dropdown-item" value="3">Alongkar</option>
+                                <option class="dropdown-item" value="4">Noya Bazar</option>
+                                <option class="dropdown-item" value="5">Boropool</option>
+                                <option class="dropdown-item" value="6">Agrabad</option>
+                                <option class="dropdown-item" value="7">Bohoddarhat</option>
+                                <option class="dropdown-item" value="8">New Market</option>
+                                <option class="dropdown-item" value="9">Chawkbazar</option>
+                                <option class="dropdown-item" value="10">Muradpur</option>
+                                <option class="dropdown-item" selected="selected" value="11">2 No. Gate</option>
+                                <option class="dropdown-item" value="12">MuriPara</option>
+                                <option class="dropdown-item" value="13">GEC</option>
+                                <option class="dropdown-item" value="14">Wasa</option>
+                                <option class="dropdown-item" value="15">Lalkhan Bazar</option>
+                                <option class="dropdown-item" value="16">Tiger pass</option>
+                                <option class="dropdown-item" value="17">Dewanhat</option>
+                                <option class="dropdown-item" value="18">Chowmuhoni</option>
+    
+                            </ul>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-6 mt-3 mt-md-0 mx-auto">
-                    <label for="toDiv">To:</label>
-                    <select id="toDiv" class="btn btn-light dropdown-toggle" data-mdb-dropdown-init data-mdb-ripple-init aria-expanded="false">
-
-                        <ul id="toMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <option class="dropdown-item" value="1">City Gate</option>
-                            <option class="dropdown-item" value="2">A.K Khan</option>
-                            <option class="dropdown-item" value="3">Alongkar</option>
-                            <option class="dropdown-item" value="4">Noya Bazar</option>
-                            <option class="dropdown-item" value="5">Boropool</option>
-                            <option class="dropdown-item" value="6">Agrabad</option>
-                            <option class="dropdown-item" value="7">Bohoddarhat</option>
-                            <option class="dropdown-item" value="8">New Market</option>
-                            <option class="dropdown-item" value="9">Chawkbazar</option>
-                            <option class="dropdown-item" value="10">Muradpur</option>
-                            <option class="dropdown-item" selected="selected" value="11">2 No. Gate</option>
-                            <option class="dropdown-item" value="12">MuriPara</option>
-                            <option class="dropdown-item" value="13">GEC</option>
-                            <option class="dropdown-item" value="14">Wasa</option>
-                            <option class="dropdown-item" value="15">Lalkhan Bazar</option>
-                            <option class="dropdown-item" value="16">Tiger pass</option>
-                            <option class="dropdown-item" value="17">Dewanhat</option>
-                            <option class="dropdown-item" value="18">Chowmuhoni</option>
-
-                        </ul>
-                    </select>
+    
+                <div class="btn-toolbartext-center" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class=" mx-auto btn-group mr-2" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success rounded-0 fs-6" id="solve">Get Route</button>
+                    </div>
+                    <div class="  mx-auto btn-group mr-2" role="group" aria-label="Second group">
+                        <button type="button" class="btn btn-dark rounded-0 fs-6" id="generate-graph"><i class="fa fa-undo"
+                                aria-hidden="true"></i></button>
+                    </div>
                 </div>
+    
             </div>
-
-            <div class="btn-toolbartext-center" role="toolbar" aria-label="Toolbar with button groups">
-                <div class=" mx-auto btn-group mr-2" role="group" aria-label="First group">
-                    <button type="button" class="btn btn-success rounded-0 fs-6" id="solve">Get Route</button>
-                </div>
-                <div class="  mx-auto btn-group mr-2" role="group" aria-label="Second group">
-                    <button type="button" class="btn btn-dark rounded-0 fs-6" id="generate-graph"><i class="fa fa-undo"
-                            aria-hidden="true"></i></button>
-                </div>
-            </div>
-
         </div>
 
         <div id="error-message" style="display: none; color: red; text-align: center;">Select another location</div>
@@ -267,6 +280,7 @@
             </footer>
         </div>
     </div>
+
     <script>
         $("#fromMenu option").on('click', function (e) {
             e.preventDefault(); // cancel the link behaviour
@@ -313,7 +327,7 @@
                 document.getElementById('reg').style.display = 'none';
                 document.getElementById('logout').style.display = 'block';
                 document.getElementById('greet').style.display = 'block';
-                document.getElementById('history').style.display = 'block';
+                //document.getElementById('history').style.display = 'block';
                 document.getElementById('username').textContent = user.fname + ' ' + user.lname;
                 document.getElementById('pname').setAttribute('value', user.fname + ' ' + user.lname);
                 document.getElementById('email').setAttribute('value', user.email);
@@ -330,9 +344,10 @@
 
             if (ord.email === user.email) {
                 document.getElementById('notify').style.display = 'block';
-                document.getElementById('fromto').textContent = ord.fromd + ' - ' + ord.tod;
+                document.getElementById('fromto').textContent = ord.fromd + ' ➜ ' + ord.tod;
                 document.getElementById('date').textContent = ord.currentDate;
                 document.getElementById('day').textContent = ord.currentTime;
+                document.getElementById('fare').textContent = ord.fare;
             }
         });
 
@@ -373,7 +388,7 @@
             const id = currentUser.id;
 
             if (pname === '' || email === '') {
-                alert("Redirecting to login page...")
+                alert("Redirecting to login page...");
                 window.location.href = 'login.html';
                 return;
             }

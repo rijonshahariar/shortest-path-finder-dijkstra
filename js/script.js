@@ -47,7 +47,7 @@ onload = function () {
     },
     layout: {
       improvedLayout: true,
-      randomSeed: 3
+      randomSeed: 8
     },
 
     nodes: {
@@ -77,7 +77,7 @@ onload = function () {
 
   function createData() {
 
-    V = 18; // 19 locations
+    V = 18; // 18 locations
     let nodes = [];
     for (let i = 1; i <= V; i++) {
       nodes.push({ id: i, label: cities[i - 1] });
@@ -281,7 +281,7 @@ onload = function () {
 
 
     // getting from and to details from webpage
-    let errorMessage = document.getElementById("error-message");
+    //let errorMessage = document.getElementById("error-message");
 
     // if (from == to) {
     //   errorMessage.style.display = "block";
@@ -337,8 +337,6 @@ onload = function () {
 
 
   function djikstra(graph, sz, src) {
-
-
     let vis = Array(sz).fill(0);
     let dist = [];
     for (let i = 1; i <= sz; i++) dist.push([10000, -1]);
@@ -456,11 +454,11 @@ onload = function () {
     const graph = createGraph(data);
 
     // Applying djikstra from src and dst
-    let dist1 = djikstra(graph, V, src - 1);
+    let dist1 = djikstra(graph, V, src - 1); //from
     let dist2 = djikstra(graph, V, dst - 1);
 
     // Initialise min_dist to min distance via bus from src to dst
-    let mn_dist = dist1[dst - 1][0];
+    let mn_dist = dist1[dst - 1][0]; //dst -> to
 
     // See if plane should be used
     let { plane, p1, p2 } = shouldTakePlane(
@@ -491,6 +489,7 @@ onload = function () {
     };
     estTime = distance * 5;
     document.getElementById("fare").setAttribute('value', String(parseAndFormatFloat(distance * 10) + 10) + " ৳");
+    //document.getElementById('dist').textContent = (String(parseAndFormatFloat(distance)));
     distan.innerHTML = '<i class="text-success fa fa-car" aria-hidden="true"></i> ' + String(parseAndFormatFloat(distance)) + " KM " + '<i class="ms-3 text-success fa fa-clock-o" aria-hidden="true"></i> ' + String(parseAndFormatFloat(estTime)) + " Minutes Est.";
     return ans_data;
   }
