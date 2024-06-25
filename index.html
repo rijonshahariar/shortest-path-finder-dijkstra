@@ -16,11 +16,11 @@
     <script src="https://kit.fontawesome.com/5548f5ed00.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="auth.css">
-    <script src="script.js"></script>
-    <script src="createData.js"></script>
+    <link rel="icon" type="image/x-icon" href="/img/icon.png">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/auth.css">
+    <script src="js/script.js"></script>
+    <script src="js/createData.js"></script>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
         <nav class="navbar navbar-expand-lg navbar-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="murirTin.png" alt="..." height="80">
+                    <img src="img/murirTin.png" alt="..." height="80">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -70,23 +70,30 @@
             <h4 class="alert-heading">Active Ride</h4>
             <table class="table">
                 <thead>
-                  <tr>
-                    <th scope="col">Destination</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Time</th>
-                  </tr>
+                    <tr>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><p><span id="fromto"></p></td>
-                    <td><p><span id="date"></p></td>
-                    <td><p><span id="day"></p></td>
-                  </tr>
+                    <tr>
+                        <td>
+                            <p><span id="fromto"></p>
+                        </td>
+                        <td>
+                            <p><span id="date"></p>
+                        </td>
+                        <td>
+                            <p><span id="day"></p>
+                        </td>
+                    </tr>
                 </tbody>
-              </table>
+            </table>
             <hr>
             <p class="mb-0"></p>
-            <button class="btn-danger btn-sm btn rounded-0" data-dismiss="alert" aria-label="Close" onclick="notclose()">
+            <button class="btn-danger btn-sm btn rounded-0" data-dismiss="alert" aria-label="Close"
+                onclick="notclose()">
                 Cancel
             </button>
         </div>
@@ -251,7 +258,7 @@
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
                 <div class="col-md-12 d-flex align-items-center">
                     <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                        <img width="30" src="murirTin.png">
+                        <img width="30" src="img/murirTin.png">
                     </a>
                     <span class="mb-3 mb-md-0 text-muted">© 2024 Murir Tin, Inc | Designed With ❤️</span>
                 </div>
@@ -299,7 +306,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const loggedInUser = sessionStorage.getItem('loggedInUser');
-            const user = JSON.parse(localStorage.getItem(loggedInUser));            
+            const user = JSON.parse(localStorage.getItem(loggedInUser));
 
             if (loggedInUser) {
                 document.getElementById('login').style.display = 'none';
@@ -316,11 +323,12 @@
         document.addEventListener('DOMContentLoaded', function () {
             const loggedInUser = sessionStorage.getItem('loggedInUser');
             const user = JSON.parse(localStorage.getItem(loggedInUser));
-            const orders = localStorage.getItem('order');
+
+            const orders = localStorage.getItem(user.id);
             const ord = JSON.parse(orders);
-            
-            
-            if(ord.email === user.email){
+            const uid = user.id;
+
+            if (ord.email === user.email) {
                 document.getElementById('notify').style.display = 'block';
                 document.getElementById('fromto').textContent = ord.fromd + ' - ' + ord.tod;
                 document.getElementById('date').textContent = ord.currentDate;
@@ -328,26 +336,17 @@
             }
         });
 
-        function notclose(){
-            localStorage.removeItem('order');
+        function notclose() {
+            const loggedInUser = sessionStorage.getItem('loggedInUser');
+            const user = JSON.parse(localStorage.getItem(loggedInUser));
+            const uid = user.id;
             alert("Are you sure you want to cancel the ride?");
+            localStorage.removeItem(uid);
         }
-
-
-
-
-
 
         function book() {
             const pn = document.getElementById('pname').value;
             const em = document.getElementById('email').value;
-
-            if (pn === '' || em === '') {
-                document.getElementById('confirmButton').disabled = true;
-            }
-            else {
-                document.getElementById('confirmButton').disabled = false;
-            }
         }
 
         function logout() {
@@ -358,8 +357,8 @@
     </script>
 
     <script>
+        //event.preventDefault();
         function confirmOrder() {
-
             const now = new Date();
             const currentDate = now.toLocaleDateString();
             const currentTime = now.toLocaleTimeString();
@@ -370,7 +369,18 @@
             const email = document.getElementById('email').value;
             const fare = document.getElementById('fare').value;
 
+            const currentUser = JSON.parse(localStorage.getItem(email));
+            const id = currentUser.id;
+
+            if (pname === '' || email === '') {
+                alert("Redirecting to login page...")
+                window.location.href = 'login.html';
+                return;
+            }
+
+
             const orders = {
+                id: id,
                 email: email,
                 fromd: fromd,
                 tod: tod,
@@ -381,13 +391,9 @@
                 currentTime: currentTime
             };
 
-            localStorage.setItem('order', JSON.stringify(orders));
-            window.location.href = 'index.html';
+            localStorage.setItem(id, JSON.stringify(orders));
+            window.location.href = '/';
         }
-    </script>
-
-    <script>
-
     </script>
     <!--
     <script>

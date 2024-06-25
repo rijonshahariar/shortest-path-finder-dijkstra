@@ -1,9 +1,3 @@
-/* body{
-    
-    background-repeat: repeat;
-    background-size: cover;
-} */
-
 
 .dropdown-menu {
     min-width: 200px;
@@ -26,7 +20,7 @@
 
     display: flex;
     margin: 0 auto;
-    background-image: url("map.jpg");
+    background-image: url("/img/map.jpg");
     align-items: center;
     justify-content: center;
 }
@@ -54,7 +48,7 @@ canvas {
     width: 90%;
     height: 70%;
     background-color: white;
-    background-image: url("map.jpg");
+    background-image: url("/img/map.jpg");
     display: flex;
     margin: 0 auto;
 

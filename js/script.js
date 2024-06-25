@@ -273,59 +273,6 @@ onload = function () {
       label: String(2.9),
     });
 
-
-    // }
-
-    // Randomly adding new edges to graph
-    // Type of bus is 0
-    // Type of plane is 1
-    // for (let i = 1; i <= V / 2;) {
-    //   let n1 = Math.floor(Math.random() * V) + 1;
-    //   let n2 = Math.floor(Math.random() * V) + 1;
-    //   if (n1 !== n2) {
-    //     if (n1 < n2) {
-    //       let tmp = n1;
-    //       n1 = n2;
-    //       n2 = tmp;
-    //     }
-    //     // Seeing if an edge between these two vertices already exists
-    //     // And if it does then of which kind
-    //     let works = 0;
-    //     for (let j = 0; j < edges.length; j++) {
-    //       if (edges[j]["from"] === n1 && edges[j]["to"] === n2) {
-    //         if (edges[j]["type"] === 0) works = 1;
-    //         else works = 2;
-    //       }
-    //     }
-
-    //     // Adding edges to the graph
-    //     // If works == 0, you can add bus as well as plane between vertices
-    //     // If works == 1, you can only add plane between them
-    //     if (works <= 1) {
-    //       if (works === 0 && i < V / 4) {
-    //         // Adding a bus
-    //         edges.push({
-    //           type: 0,
-    //           from: n1,
-    //           to: n2,
-    //           color: "blue",
-    //           label: String(Math.floor(Math.random() * 70) + 31),
-    //         });
-    //       } else {
-    //         // Adding a plane
-    //         edges.push({
-    //           type: 1,
-    //           from: n1,
-    //           to: n2,
-    //           color: "blue",
-    //           label: String(Math.floor(Math.random() * 50) + 1),
-    //         });
-    //       }
-    //       i++;
-    //     }
-    //   }
-    // }
-
     let e = document.getElementById("fromDiv");
     src = e.value;
 
