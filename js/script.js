@@ -489,7 +489,6 @@ onload = function () {
     };
     estTime = distance * 5;
     document.getElementById("fare").setAttribute('value', String(parseAndFormatFloat(distance * 10) + 10) + " ৳");
-    //document.getElementById('dist').textContent = (String(parseAndFormatFloat(distance)));
     distan.innerHTML = '<i class="text-success fa fa-car" aria-hidden="true"></i> ' + String(parseAndFormatFloat(distance)) + " KM " + '<i class="ms-3 text-success fa fa-clock-o" aria-hidden="true"></i> ' + String(parseAndFormatFloat(estTime)) + " Minutes Est.";
     return ans_data;
   }
