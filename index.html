@@ -41,18 +41,59 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="login.html">Login</a>
+                            <p id="greet" class="nav-link text-primary" style="display: none;"><i
+                                    class="fa border border-primary rounded-circle p-1 fa-user"></i> <span
+                                    id="username"> </p>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="register.html">Register</a>
+                            <a class="nav-link" id="login" aria-current="page" href="login.html">Login</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="reg" href="register.html">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="history" style="display: none; cursor: pointer;"
+                                onclick="">History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="logout" style="display: none; cursor: pointer;"
+                                onclick="logout()">Log out <i class="fa fa-sign-out" aria-hidden="true"></i> </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
 
+        <div class="alert alert-success col-md-6 col-md-offset-6 alert-dismissible fade show mx-auto" align="center"
+            role="alert" id="notify" style="display: none">
+            <h4 class="alert-heading">Active Ride</h4>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><p><span id="fromto"></p></td>
+                    <td><p><span id="date"></p></td>
+                    <td><p><span id="day"></p></td>
+                  </tr>
+                </tbody>
+              </table>
+            <hr>
+            <p class="mb-0"></p>
+            <button class="btn-danger btn-sm btn rounded-0" data-dismiss="alert" aria-label="Close" onclick="notclose()">
+                Cancel
+            </button>
+        </div>
+
         <div class="container menubar mt-5 mb-5 text-center border-3 border shadow-lg border-secondary p-3 rounded-3">
             <div class="row">
+
                 <div class="col-md-6 mx-auto">
                     <label for="fromDiv">From:</label>
                     <select id="fromDiv" class="dropdown">
@@ -145,8 +186,8 @@
 
 
             <!-- Button trigger modal -->
-            <button type="button" style="display: none" id="bookride" class="btn btn-primary rounded-0 fs-6" data-toggle="modal"
-                data-target="#exampleModalCenter">
+            <button type="button" style="display: none" id="bookride" class="btn btn-primary rounded-0 fs-6"
+                data-toggle="modal" data-target="#exampleModalCenter">
                 Book Your Ride <i class="fa fa-car" aria-hidden="true"></i>
             </button>
 
@@ -157,7 +198,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">Book Your Ride</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" onclick="book()" class="close" data-dismiss="modal"
+                                aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -171,17 +213,20 @@
                                     <input type="text" class="form-control" id="tod" disabled>
 
                                     <label for="name" class="col-form-label">Passanger Name:</label>
-                                    <input type="name" class="form-control" id="">
+                                    <input type="name" class="form-control" id="pname" disabled>
                                     <label for="email" class="col-form-label">Email Address:</label>
-                                    <input type="email" class="form-control" id="">
+                                    <input type="email" class="form-control" id="email" disabled>
                                     <label for="fare" class="col-form-label">Fare: *VAT included</label>
                                     <input type="cost" class="form-control" id="fare" disabled>
                                 </div>
                             </form>
                         </div>
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" id="cancel" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" id="confirmButton">Confirm</button>
+                            <button type="button" class="btn btn-secondary" id="cancel"
+                                data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="confirmButton"
+                                onclick="confirmOrder()">Confirm</button>
                         </div>
                     </div>
                 </div>
@@ -192,15 +237,15 @@
         <footer class="new_footer_area bg_color">
             <div class="new_footer_top">
                 <div class="container">
-                    
+
                 </div>
                 <div class="footer_bg">
                     <div class="footer_bg_one"></div>
                     <div class="footer_bg_two"></div>
                 </div>
             </div>
-            
-          </footer>
+
+        </footer>
 
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
@@ -228,10 +273,9 @@
         });
     </script>
 
-   
+
 
     <script>
-
         document.addEventListener("DOMContentLoaded", () => {
             // Simulate an API request or any async operation
             setTimeout(() => {
@@ -252,6 +296,99 @@
 
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loggedInUser = sessionStorage.getItem('loggedInUser');
+            const user = JSON.parse(localStorage.getItem(loggedInUser));            
+
+            if (loggedInUser) {
+                document.getElementById('login').style.display = 'none';
+                document.getElementById('reg').style.display = 'none';
+                document.getElementById('logout').style.display = 'block';
+                document.getElementById('greet').style.display = 'block';
+                document.getElementById('history').style.display = 'block';
+                document.getElementById('username').textContent = user.fname + ' ' + user.lname;
+                document.getElementById('pname').setAttribute('value', user.fname + ' ' + user.lname);
+                document.getElementById('email').setAttribute('value', user.email);
+            }
+
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const loggedInUser = sessionStorage.getItem('loggedInUser');
+            const user = JSON.parse(localStorage.getItem(loggedInUser));
+            const orders = localStorage.getItem('order');
+            const ord = JSON.parse(orders);
+            
+            
+            if(ord.email === user.email){
+                document.getElementById('notify').style.display = 'block';
+                document.getElementById('fromto').textContent = ord.fromd + ' - ' + ord.tod;
+                document.getElementById('date').textContent = ord.currentDate;
+                document.getElementById('day').textContent = ord.currentTime;
+            }
+        });
+
+        function notclose(){
+            localStorage.removeItem('order');
+            alert("Are you sure you want to cancel the ride?");
+        }
+
+
+
+
+
+
+        function book() {
+            const pn = document.getElementById('pname').value;
+            const em = document.getElementById('email').value;
+
+            if (pn === '' || em === '') {
+                document.getElementById('confirmButton').disabled = true;
+            }
+            else {
+                document.getElementById('confirmButton').disabled = false;
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem('loggedInUser');
+            window.location.reload();
+        }
+
+    </script>
+
+    <script>
+        function confirmOrder() {
+
+            const now = new Date();
+            const currentDate = now.toLocaleDateString();
+            const currentTime = now.toLocaleTimeString();
+
+            const fromd = document.getElementById('fromd').value;
+            const tod = document.getElementById('tod').value;
+            const pname = document.getElementById('pname').value;
+            const email = document.getElementById('email').value;
+            const fare = document.getElementById('fare').value;
+
+            const orders = {
+                email: email,
+                fromd: fromd,
+                tod: tod,
+                pname: pname,
+                email: email,
+                fare: fare,
+                currentDate: currentDate,
+                currentTime: currentTime
+            };
+
+            localStorage.setItem('order', JSON.stringify(orders));
+            window.location.href = 'index.html';
+        }
+    </script>
+
+    <script>
+
+    </script>
     <!--
     <script>
       document.onkeydown = function(e) {

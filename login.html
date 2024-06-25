@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet"
     href="https://unpkg.com/bs-brain@2.0.4/components/registrations/registration-3/assets/css/registration-3.css">
-    <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="auth.css">
   <style>
     .bg-image-vertical {
       position: relative;
@@ -56,46 +56,39 @@
         <div class="col-12 col-lg-10 col-xl-8">
           <div class="row gy-5 justify-content-center">
             <div class="col-12 col-lg-5">
-              <form action="#!">
-                <div class="row gy-3 overflow-hidden">
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <input type="email" class="form-control border-0 border-bottom rounded-0" name="email" id="email"
-                        placeholder="name@example.com" required>
-                      <label for="email" class="form-label">Email</label>
-                    </div>
+
+              <div class="row gy-3 overflow-hidden">
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control border-0 border-bottom rounded-0" name="email" id="email"
+                      placeholder="name@example.com" required>
+                    <label for="email" class="form-label">Email</label>
                   </div>
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <input type="password" class="form-control border-0 border-bottom rounded-0" name="password"
-                        id="password" value="" placeholder="Password" required>
-                      <label for="password" class="form-label">Password</label>
-                    </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control border-0 border-bottom rounded-0" name="password"
+                      id="password" value="" placeholder="Password" required>
+                    <label for="password" class="form-label">Password</label>
                   </div>
-                  <div class="col-12">
-                    <div class="row justify-content-between">
-                      <div class="col-6">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-                          <label class="form-check-label text-secondary" for="remember_me">
-                            Remember me
-                          </label>
-                        </div>
+                </div>
+                <div class="col-12">
+                  <div class="row justify-content-between">
+
+                    <div class="col-6">
+                      <div class="text-end">
+                        <a href="#!" class="link-secondary text-decoration-none">Forgot password?</a>
                       </div>
-                      <div class="col-6">
-                        <div class="text-end">
-                          <a href="#!" class="link-secondary text-decoration-none">Forgot password?</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="d-grid">
-                      <button class="btn btn-lg btn-dark rounded-0 fs-6" type="submit">Log in</button>
                     </div>
                   </div>
                 </div>
-              </form>
+                <div class="col-12">
+                  <div class="d-grid">
+                    <button class="btn btn-lg btn-dark rounded-0 fs-6" onclick="login()" type="submit">Log in</button>
+                  </div>
+                </div>
+              </div>
+
             </div>
             <div class="col-12 col-lg-2 d-flex align-items-center justify-content-center gap-3 flex-lg-column">
               <div class="bg-dark h-100 d-none d-lg-block" style="width: 1px; --bs-bg-opacity: .1;"></div>
@@ -141,33 +134,62 @@
   </section>
 
 
-  
 
-<footer class="new_footer_area bg_color">
-  <div class="new_footer_top">
+
+  <footer class="new_footer_area bg_color">
+    <div class="new_footer_top">
       <div class="container">
-          
+
       </div>
       <div class="footer_bg">
-          <div class="footer_bg_one"></div>
-          <div class="footer_bg_two"></div>
+        <div class="footer_bg_one"></div>
+        <div class="footer_bg_two"></div>
       </div>
-  </div>
-  
-</footer>
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
-      <div class="col-md-12 d-flex align-items-center">
-          <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-              <img width="30" src="murirTin.png">
-          </a>
-          <span class="mb-3 mb-md-0 text-muted">© 2024 Murir Tin, Inc | Designed With ❤️</span>
-      </div>
-
+    </div>
 
   </footer>
-</div>
-</div>
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
+      <div class="col-md-12 d-flex align-items-center">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+          <img width="30" src="murirTin.png">
+        </a>
+        <span class="mb-3 mb-md-0 text-muted">© 2024 Murir Tin, Inc | Designed With ❤️</span>
+      </div>
+
+
+    </footer>
+  </div>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (email === '' || password === '') {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      const storedUser = localStorage.getItem(email);
+      //const fn = localStorage.getItem(fname);
+      //const ln = localStorage.getItem(lname);
+
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        if (user.password === password) {
+          window.location.href = 'index.html';
+          sessionStorage.setItem('loggedInUser', email);
+        } else {
+          alert('Incorrect password. Please try again.');
+        }
+      } else {
+        alert('No user found. Please register.');
+        window.location.href = 'register.html';
+      }
+    }
+  </script>
 
   <!--
     <script>

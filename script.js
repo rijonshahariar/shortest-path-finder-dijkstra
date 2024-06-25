@@ -8,7 +8,7 @@ onload = function () {
   const solve = document.getElementById("solve");
   const temptext = document.getElementById("temptext");
   const temptext2 = document.getElementById("temptext2");
-  
+
   const cities = [
     "City Gate",
     "A.K Khan",
@@ -34,11 +34,20 @@ onload = function () {
 
   // initialise graph options
   const options = {
+    interaction: {
+      hover: true,
+  },
     edges: {
+      width: 2,
       labelHighlightBold: true,
       font: {
         size: 20,
       },
+      
+    },
+    layout: {
+      improvedLayout: true,
+      randomSeed: 3
     },
 
     nodes: {
