@@ -1,6 +1,20 @@
 onload = function () {
+
+   // Important variables we'll use throughout the program:
+  // curr_data: stores the current graph data
+  // V: number of cities/vertices
+  // src: starting point
+  // dst: destination point
+  // distance: total distance of route
+  // estTime: estimated time for journey
+
   let curr_data, V, src, dst, distance = 0, estTime = 0;
 
+   // Getting HTML elements by their IDs
+  // container1: shows the initial map
+  // container2: shows the route solution
+  // genNew: the "Generate Graph" button
+  // solve: the "Find Path" button
 
   const container1 = document.getElementById("mynetwork");
   const container2 = document.getElementById("mynetwork2");
@@ -9,6 +23,8 @@ onload = function () {
   const temptext = document.getElementById("temptext");
   const temptext2 = document.getElementById("temptext2");
 
+
+  // List of all cities in Chittagong that are available in our system
   const cities = [
     "City Gate",
     "A.K Khan",
@@ -32,11 +48,13 @@ onload = function () {
 
 
 
-  // initialise graph options
+  // Visual settings for how the map and routes will look
   const options = {
     interaction: {
       hover: true,
   },
+
+    // How the roads (edges) should look
     edges: {
       width: 2,
       labelHighlightBold: true,
@@ -45,11 +63,13 @@ onload = function () {
       },
       
     },
+    // Map layout settings
     layout: {
       improvedLayout: true,
       randomSeed: 8
     },
 
+    // How the city markers (nodes) should look
     nodes: {
       font: "25px arial",
       scaling: {
@@ -66,7 +86,7 @@ onload = function () {
   };
 
 
-
+  // Create two maps - one for showing all roads, one for showing the solution
   // Initialize your network!
   // Network for question graph
   const network = new vis.Network(container1);
@@ -84,6 +104,14 @@ onload = function () {
     }
     // Prepares vis.js style nodes for our data
     nodes = new vis.DataSet(nodes);
+
+    // Create all the roads (edges) connecting cities
+    // Each road has:
+    // - type: 0 for normal road
+    // - from: starting city ID
+    // - to: ending city ID
+    // - color: blue for regular roads
+    // - label: distance in kilometers
 
     // Creating a tree like underlying graph structure
     let edges = [];
@@ -272,12 +300,13 @@ onload = function () {
       color: "blue",
       label: String(2.9),
     });
+    
+    // Get the selected starting point and destination from the index.html file
+    let frome = document.getElementById("fromDiv");
+    src = frome.value;
 
-    let e = document.getElementById("fromDiv");
-    src = e.value;
-
-    let ee = document.getElementById("toDiv");
-    dst = ee.value;
+    let toe = document.getElementById("toDiv");
+    dst = toe.value;
 
 
     // getting from and to details from webpage
@@ -299,7 +328,7 @@ onload = function () {
     // src = 2;
     //dst = V;
 
-
+    // Save all this data
     curr_data = {
       nodes: nodes,
       edges: edges,
@@ -307,12 +336,13 @@ onload = function () {
   }
 
 
-
+  // What happens when "Generate Graph" button is clicked
   genNew.onclick = function () {
     // Create new data and display the data
     createData();
 
     network.setData(curr_data);
+    // Update the display text and show/hide appropriate elements
     temptext2.innerText =
       "Find least time path from " + cities[src - 1] + " to " + cities[dst - 1];
     temptext.style.display = "inline";
@@ -325,6 +355,7 @@ onload = function () {
 
   solve.onclick = function () {
     // Create graph from data and set to display
+    // Hide the initial map and show the solution
     temptext.style.display = "none";
     temptext2.style.display = "none";
     container1.style.display = "none";
@@ -335,7 +366,7 @@ onload = function () {
   };
 
 
-
+  // Implementation of Dijkstra's shortest path algorithm
   function djikstra(graph, sz, src) {
     let vis = Array(sz).fill(0);
     let dist = [];
@@ -363,6 +394,8 @@ onload = function () {
     return dist;
   }
 
+
+  // Helper function to format floating point numbers
   function parseAndFormatFloat(inputString) {
     const parsedFloat = parseFloat(inputString);
     if (isNaN(parsedFloat)) {
@@ -371,11 +404,13 @@ onload = function () {
     return parseFloat(parsedFloat.toFixed(2));
   }
 
+  // Convert edge data to adjacency list format for algorithm
   function createGraph(data) {
     let graph = [];
     for (let i = 1; i <= V; i++) {
       graph.push([]);
     }
+    // Create adjacency list with weights
 
     for (let i = 0; i < data["edges"].length; i++) {
       let edge = data["edges"][i];
@@ -416,6 +451,8 @@ onload = function () {
     }
     return { plane, p1, p2 };
   }
+
+  // Function to find and visualize the shortest path
 
   function solveData() {
     const data = curr_data;
@@ -467,7 +504,8 @@ onload = function () {
       dist2,
       mn_dist
     );
-
+    
+    // Create visualization data
     let new_edges = [];
     if (plane !== 0) {
       new_edges.push({
@@ -493,6 +531,7 @@ onload = function () {
     return ans_data;
   }
 
+  // Helper function to create edges for path visualization
   function pushEdges(dist, curr, reverse) {
     let tmp_edges = [];
     while (dist[curr][0] !== 0) {
